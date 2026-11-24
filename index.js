@@ -188,9 +188,11 @@
           const i = (y * W + x) * 4;
           const a = data[i + 3];
           if (a < 120) continue;
-          let lum = (0.3 * data[i] + 0.59 * data[i + 1] + 0.11 * data[i + 2]) / 255;
-          lum = Math.min(1, Math.pow(lum, 0.85) * 1.12);
-          if (lum < 0.06) continue;
+          const R0 = data[i], G0 = data[i + 1], B0 = data[i + 2];
+          let lum = (0.3 * R0 + 0.59 * G0 + 0.11 * B0) / 255;
+          // lift the shadows so black clothing still shows as dim particles
+          lum = Math.min(1, 0.1 + Math.pow(lum, 0.75));
+          const isRim = R0 > 150 && G0 < R0 * 0.56 && B0 < R0 * 0.36; // saturated orange rim light, not skin
           const angle = Math.random() * Math.PI * 2;
           const dist = 200 + Math.random() * Math.max(W, H);
           particles.push({
@@ -198,21 +200,22 @@
             x: W / 2 + Math.cos(angle) * dist, y: H / 2 + Math.sin(angle) * dist,
             vx: 0, vy: 0,
             s: step * (0.45 + lum * 0.5),
-            b: Math.min(7, Math.floor(lum * 8)),
+            b: isRim ? 8 : Math.min(7, Math.floor(lum * 8)),
             d: 0.028 + Math.random() * 0.04,
           });
         }
       }
       // group by brightness so each colour is set once per frame
-      buckets = Array.from({ length: 8 }, () => []);
+      buckets = Array.from({ length: 9 }, () => []);
       particles.forEach((p) => buckets[p.b].push(p));
       return true;
     }
 
     const shades = Array.from({ length: 8 }, (_, i) => {
-      const v = Math.round(60 + (i / 7) * 195);
+      const v = Math.round(48 + (i / 7) * 207);
       return `rgb(${v},${Math.round(v * 0.985)},${Math.round(v * 0.96)})`;
     });
+    shades.push('#FF6A3D'); // rim-light particles glow ember
 
     let settledFrames = 0;
     function frame() {
@@ -220,7 +223,7 @@
       ctx.clearRect(0, 0, W, H);
       let moving = 0;
       const R = 90, R2 = R * R;
-      for (let b = 0; b < 8; b++) {
+      for (let b = 0; b < 9; b++) {
         ctx.fillStyle = shades[b];
         const list = buckets[b];
         for (let k = 0; k < list.length; k++) {

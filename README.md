@@ -40,7 +40,7 @@ assets/
 ## Editing
 
 - Résumé: replace `assets/Pruthvi_PR_Resume.pdf` with a file of the same name.
-- Hero photo: replace `assets/img/about.webp` (transparent background, 2:3).
+- Photos: `assets/img/about.webp` (hero), `approach.webp` (About), `experience.webp` (Experience), `standing.webp` (Contact). Transparent WebP, 2:3. Replace with the same names.
 - Colours: change `--ember` and the other variables at the top of `style.css`.
 
 ## Deploy

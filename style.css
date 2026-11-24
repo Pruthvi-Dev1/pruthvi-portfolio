@@ -162,7 +162,7 @@ body::before {
   height: 86%; aspect-ratio: 2 / 3;
 }
 .portrait-img, .particles { position: absolute; inset: 0; width: 100%; height: 100%; }
-.portrait-img { object-fit: contain; object-position: bottom; filter: grayscale(1) contrast(1.08) brightness(.96); transition: opacity .8s var(--ease); }
+.portrait-img { object-fit: contain; object-position: bottom; transition: opacity .8s var(--ease); }
 .particles { opacity: 0; transition: opacity .6s; }
 .has-particles .particles { opacity: 1; }
 .has-particles .portrait-img { opacity: 0; }
@@ -226,8 +226,8 @@ body::before {
   background: radial-gradient(70% 50% at 50% 55%, rgba(255, 74, 28, .28), rgba(255, 74, 28, 0) 70%), var(--card);
   border: 1px solid var(--line); aspect-ratio: 3 / 4;
 }
-.about-photo img { position: absolute; inset: 4% 0 0; width: 100%; height: 100%; object-fit: cover; object-position: top; filter: grayscale(1) contrast(1.1); transition: transform 1.2s var(--ease), filter .8s; }
-.about-photo:hover img { transform: scale(1.04); filter: grayscale(.2) contrast(1.05); }
+.about-photo img { position: absolute; inset: 4% 0 0; width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 1.2s var(--ease); }
+.about-photo:hover img { transform: scale(1.04); }
 .about-photo figcaption { position: absolute; left: 14px; right: 14px; bottom: 14px; padding: 14px 16px; border-radius: 16px; background: rgba(7, 7, 8, .72); backdrop-filter: blur(10px); font-size: .9rem; color: var(--text-2); }
 .about-photo figcaption em { font-family: var(--serif); font-size: 1.15rem; color: var(--ember); }
 
@@ -347,7 +347,8 @@ body::before {
 /* ---------- Experience ---------- */
 .exp { display: grid; grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr); gap: clamp(32px, 6vw, 96px); align-items: start; }
 .exp-photo { position: sticky; top: 110px; border-radius: 28px; overflow: hidden; aspect-ratio: 3 / 4; background: radial-gradient(70% 50% at 50% 60%, rgba(255, 74, 28, .22), transparent 70%), var(--card); border: 1px solid var(--line); }
-.exp-photo img { width: 100%; height: 108%; object-fit: cover; object-position: top; filter: grayscale(1) contrast(1.1); }
+.exp-photo img { width: 100%; height: 104%; object-fit: cover; object-position: top; transition: transform 1.2s var(--ease); }
+.exp-photo:hover img { transform: scale(1.03); }
 .exp-list { margin-top: 44px; border-top: 1px solid var(--line); }
 .exp-list li { display: grid; grid-template-columns: 170px 1fr; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--line); }
 .exp-when { font-family: var(--serif); font-style: italic; font-size: 1.25rem; color: var(--ember); line-height: 1.3; }
@@ -446,8 +447,8 @@ body::before {
 .avail { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px; background: rgba(61, 220, 151, .1); color: var(--ok); font-weight: 650; }
 .clock { color: var(--muted); font-variant-numeric: tabular-nums; }
 .clock span { color: var(--text); font-weight: 650; }
-.contact-photo { width: 78%; margin: 14px auto 0; filter: grayscale(1) contrast(1.1); transition: filter .8s, transform 1s var(--ease); }
-.contact-card:hover .contact-photo { filter: grayscale(0) contrast(1.02); transform: scale(1.02); }
+.contact-photo { width: 78%; margin: 14px auto 0; transition: transform 1s var(--ease); }
+.contact-card:hover .contact-photo { transform: scale(1.03) rotate(-1deg); }
 .contact-facts { margin-top: auto; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); background: rgba(7, 7, 8, .6); backdrop-filter: blur(8px); }
 .contact-facts div { padding: 16px 18px; }
 .contact-facts div + div { border-left: 1px solid var(--line); }
